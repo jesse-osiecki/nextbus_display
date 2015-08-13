@@ -20,6 +20,7 @@ function get_(url, func){
             func(http); 
         }
         else{
+            func(null);
             console.log("Not Ready");
         }
     }
@@ -48,44 +49,52 @@ function startTime() {
 
 function showResponse(h) { 
     var jsonObj = JSON.parse(h.responseText);
+    console.log(h);
+    if(h === null){
+        document.getElementById('bus_stuff').innerHTML = "API not available right now";
+    }
+    else{
+        //clear it
+        document.getElementById('bus_stuff').innerHTML = "";
+        //
+        var header1 = document.createElement('h1');
+        var header1_text = document.createTextNode(jsonObj[0].route.title + " " + jsonObj[0].stop.title);
+        header1.appendChild(header1_text);
+        document.getElementById('bus_stuff').appendChild(header1);
 
-    //clear it
-    document.getElementById('bus_stuff').innerHTML = "";
-    //
-    var header1 = document.createElement('h1');
-    var header1_text = document.createTextNode(jsonObj[0].route.title + " " jsonObj[0].stop.title);
-    header1.appendChild(header1_text);
-    document.getElementById('bus_stuff').appendChild(header1);
+        for(var i = 0; i < jsonObj[0].values.length; i++){
+            var row = document.createElement("div");
+            row.setAttribute('class', 'row');
+            document.getElementById('bus_stuff').appendChild(row);
 
-    for(var i = 0; i < jsonObj[0].values.length; i++){
-        var direction = document.createElement("div");
-        direction.setAttribute('class', 'col-md-3');
-        var direction_text = document.createTextNode("Direction: " + jsonObj[0].values[i].direction.title );
-        direction.appendChild(direction_text);
-        document.getElementById('bus_stuff').appendChild(direction);
+            var direction = document.createElement("div");
+            direction.setAttribute('class', 'col-xs-1 col-md-3');
+            var direction_text = document.createTextNode("Direction: " + jsonObj[0].values[i].direction.title );
+            direction.appendChild(direction_text);
+            row.appendChild(direction);
 
-        var minutes = document.createElement("div");
-        minutes.setAttribute('class', 'col-md-3');
-        var minutes_text = document.createTextNode("Minutes: " + jsonObj[0].values[i].minutes);
-        minutes.appendChild(minutes_text);
-        document.getElementById('bus_stuff').appendChild(minutes);
+            var minutes = document.createElement("div");
+            minutes.setAttribute('class', 'col-xs-1 col-md-3');
+            var minutes_text = document.createTextNode("Minutes: " + jsonObj[0].values[i].minutes);
+            minutes.appendChild(minutes_text);
+            row.appendChild(minutes);
 
 
-        var seconds = document.createElement("div");
-        seconds.setAttribute('class', 'col-md-3');
-        var seconds_text = document.createTextNode("Seconds: " + jsonObj[0].values[i].seconds);
-        seconds.appendChild(seconds_text);
-        document.getElementById('bus_stuff').appendChild(seconds);
+            var seconds = document.createElement("div");
+            seconds.setAttribute('class', 'col-xs-1 col-md-3');
+            var seconds_text = document.createTextNode("Seconds: " + jsonObj[0].values[i].seconds);
+            seconds.appendChild(seconds_text);
+            row.appendChild(seconds);
 
-        var busid = document.createElement("div");
-        busid.setAttribute('class', 'col-md-3');
-        var busid_text = document.createTextNode("BusID: " + jsonObj[0].values[i].vehicle.id );
-        busid.appendChild(busid_text);
-        document.getElementById('bus_stuff').appendChild(busid);
+            var busid = document.createElement("div");
+            busid.setAttribute('class', 'col-xs-1 col-md-3');
+            var busid_text = document.createTextNode("BusID: " + jsonObj[0].values[i].vehicle.id );
+            busid.appendChild(busid_text);
+            row.appendChild(busid);
 
-        console.log(jsonObj[0].values[i]);
-        console.log("Sent Request");
-
+            console.log(jsonObj[0].values[i]);
+            console.log("Sent Request");
+        }
     }
 }
 
