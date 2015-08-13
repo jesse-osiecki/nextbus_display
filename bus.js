@@ -53,13 +53,9 @@ function showResponse(h) {
     document.getElementById('bus_stuff').innerHTML = "";
     //
     var header1 = document.createElement('h1');
-    var header2 = document.createElement('h2');
-    var header1_text = document.createTextNode(jsonObj[0].route.title);
-    var header2_text = document.createTextNode(jsonObj[0].stop.title);
+    var header1_text = document.createTextNode(jsonObj[0].route.title + " " jsonObj[0].stop.title);
     header1.appendChild(header1_text);
-    header2.appendChild(header2_text);
     document.getElementById('bus_stuff').appendChild(header1);
-    document.getElementById('bus_stuff').appendChild(header2);
 
     for(var i = 0; i < jsonObj[0].values.length; i++){
         var direction = document.createElement("div");
