@@ -44,7 +44,7 @@ function startTime() {
     document.getElementById('time').innerHTML ="<h2>"+ h + ":" + m + ":" + s + "</h2>";
     t = setTimeout(function () {
         startTime()
-    }, 500);
+    }, 1000);
 }
 
 function showResponse(h) { 
@@ -100,5 +100,5 @@ function showResponse(h) {
 
 bust = setInterval(function () {
     get_("http://restbus.info/api/agencies/chapel-hill/routes/J/stops/jonebarn/predictions", showResponse);
-}, 1000);
+}, 10000);
 startTime();
