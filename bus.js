@@ -98,9 +98,6 @@ function showResponse(h) {
     }
 }
 
-var currentIFrame = $('#future_stuff'); 
-var ctable = currentIFrame.contents().find("body #climate_table");
-document.getElementById('#future_stuff').innerHTML = ctable;
 
 bust = setInterval(function () {
     get_("http://restbus.info/api/agencies/chapel-hill/routes/J/stops/jonebarn/predictions", showResponse);
