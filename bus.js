@@ -105,8 +105,7 @@ bust = setInterval(function () {
 startTime();
 
 //iframe stuff
-var iframee = document.getElementById("future_stuff");
-iframee.contentWindow.document.onload = function (){
+var mod_iframe = function (){
     this.innerHTML = this.getElementById('climate_table');
     console.log("We have executed iframe modifications");
 };
