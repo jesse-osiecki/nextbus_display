@@ -22,7 +22,7 @@ function getUrlContent($url){
     while($y < $year_end){
         $base_url = "http://www.wunderground.com/history/airport/KIGX/". $y . "/" . $mon ."/" . $dom . "/CustomHistory.html?format=1";
         $dat = getUrlContent($base_url);
-        $csv_dat = str_getcsv($dat);
+        $csv_dat = str_getcsv($dat, "\n");
         var_dump($csv_dat);
         $y++;
     }
