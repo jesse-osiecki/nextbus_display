@@ -31,9 +31,9 @@ function getUrlContent($url){
             $big_data[0][]=$csv_dat[1];
         }
         foreach($csv_dat[2] as $key => $value){
-            $big_data[$year_start-$y][]=$value;
+            $big_data[$y-$year_start][]=$value;
         }
         $y++;
     }
-    echo json_encode($big_data);
+    echo var_dump($big_data);
 ?>
