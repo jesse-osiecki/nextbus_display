@@ -35,5 +35,5 @@ function getUrlContent($url){
         }
         $y++;
     }
-    echo $big_data;
+    echo json_encode($big_data);
 ?>
