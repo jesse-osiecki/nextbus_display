@@ -11,7 +11,7 @@ function getUrlContent($url){
     curl_close($ch);
     return ($httpcode>=200 && $httpcode<300) ? $data : false;
 }
-    date_default_timezone_set('EST');
+    date_default_timezone_set('EDT');
     $dom = intval(date("j"));
     $mon = intval(date("m"));
     $year_start = 1949;
@@ -23,7 +23,9 @@ function getUrlContent($url){
         $base_url = "http://www.wunderground.com/history/airport/KIGX/". $y . "/" . $mon ."/" . $dom . "/CustomHistory.html?format=1";
         $dat = getUrlContent($base_url);
         $csv_dat = str_getcsv($dat, "\n");
+        foreach($csv_data as &$row) $row = str_getcsv($row, ";");
         var_dump($csv_dat);
+        break;
         $y++;
     }
 ?>
