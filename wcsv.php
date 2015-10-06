@@ -19,13 +19,21 @@ function getUrlContent($url){
 
     //loop through and get all of the data 
     $y = $year_start;
+    $big_data = array();
     while($y < $year_end){
         $base_url = "http://www.wunderground.com/history/airport/KIGX/". $y . "/" . $mon ."/" . $dom . "/CustomHistory.html?format=1";
         $dat = getUrlContent($base_url);
         $csv_dat = str_getcsv($dat, "\n");
-        foreach($csv_data as &$row) $row = str_getcsv($row, ";");
-        var_dump($csv_dat);
-        break;
+        foreach($csv_dat as &$row) $row = str_getcsv($row, ";");
+        #var_dump($csv_dat);
+        #first row is null, next is header
+        if($year_start-$y == 0){#first
+            $big_data[0][]=$csv_dat[1];
+        }
+        foreach($csv_dat[2] as $key => $value){
+            $big_data[$year_start-$y][]=$value;
+        }
         $y++;
     }
+    echo $big_data;
 ?>
