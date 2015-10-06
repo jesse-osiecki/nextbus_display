@@ -46,7 +46,9 @@ function startTime() {
         startTime()
     }, 1000);
 }
-
+function showHistory() {
+    document.getElementById('history').innerHTML = "<h3>Historical Weather</h3>";
+}
 function showResponse(h) { 
     var jsonObj = JSON.parse(h.responseText);
     console.log(h);
@@ -103,11 +105,3 @@ bust = setInterval(function () {
     get_("http://restbus.info/api/agencies/chapel-hill/routes/J/stops/jonebarn/predictions", showResponse);
 }, 10000);
 startTime();
-
-//iframe stuff
-function mod_iframe(){
-    iframe = document.getElementById("future_stuff").contentWindow.document;
-    iframe.body.style.backgroundColor = "red";
-    iframe.innerHTML = this.getElementById('climate_table');
-    console.log("We have executed iframe modifications");
-};
