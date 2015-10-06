@@ -28,7 +28,7 @@ while($y < $year_end){
     #var_dump($csv_dat);
     #first row is null, next is header
     if($year_start-$y == 0){#first
-        $big_data[0][]=$csv_dat[1];
+        $big_data[0][]=&$csv_dat[1];
     }
     foreach($csv_dat[2] as $key => $value){
         $big_data[$y-$year_start+1][]=$value;
