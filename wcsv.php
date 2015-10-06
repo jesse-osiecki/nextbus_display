@@ -11,29 +11,35 @@ function getUrlContent($url){
     curl_close($ch);
     return ($httpcode>=200 && $httpcode<300) ? $data : false;
 }
-    date_default_timezone_set('EDT');
-    $dom = intval(date("j"));
-    $mon = intval(date("m"));
-    $year_start = 1949;
-    $year_end = intval(date("Y"));   
+date_default_timezone_set('EDT');
+$dom = intval(date("j"));
+$mon = intval(date("m"));
+$year_start = 1949;
+$year_end = intval(date("Y"));   
 
-    //loop through and get all of the data 
-    $y = $year_start;
-    $big_data = array();
-    while($y < $year_end){
-        $base_url = "http://www.wunderground.com/history/airport/KIGX/". $y . "/" . $mon ."/" . $dom . "/CustomHistory.html?format=1";
-        $dat = getUrlContent($base_url);
-        $csv_dat = str_getcsv($dat, "\n");
-        foreach($csv_dat as &$row) $row = str_getcsv($row, ";");
-        #var_dump($csv_dat);
-        #first row is null, next is header
-        if($year_start-$y == 0){#first
-            $big_data[0][]=$csv_dat[1];
-        }
-        foreach($csv_dat[2] as $key => $value){
-            $big_data[$y-$year_start][]=$value;
-        }
-        $y++;
+//loop through and get all of the data 
+$y = $year_start;
+$big_data = array();
+while($y < $year_end){
+    $base_url = "http://www.wunderground.com/history/airport/KIGX/". $y . "/" . $mon ."/" . $dom . "/CustomHistory.html?format=1";
+    $dat = getUrlContent($base_url);
+    $csv_dat = str_getcsv($dat, "\n");
+    foreach($csv_dat as &$row) $row = str_getcsv($row);
+    #var_dump($csv_dat);
+    #first row is null, next is header
+    if($year_start-$y == 0){#first
+        $big_data[0][]=$csv_dat[1];
     }
-    echo var_dump($big_data);
+    foreach($csv_dat[2] as $key => $value){
+        $big_data[$y-$year_start+1][]=$value;
+    }
+    $y++;
+}
+foreach($big_data as $key => $v1){
+    foreach($big_data[$key] as $k2 => $v2){
+        echo $v2 . ",";
+    }
+    echo "\n";
+}
 ?>
+
