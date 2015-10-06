@@ -29,11 +29,11 @@ while($y < $year_end){
     #first row is null, next is header
     if($year_start-$y == 0){#first
         foreach($csv_dat[1] as $key => $value){
-            $big_data[0][]=$value;
+            $big_data[0][]=strip_tags($value);
         }
     }
     foreach($csv_dat[2] as $key => $value){
-        $big_data[$y-$year_start+1][]=$value;
+        $big_data[$y-$year_start+1][]=strip_tags($value);
     }
     $y++;
 }
