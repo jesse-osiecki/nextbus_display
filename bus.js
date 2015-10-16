@@ -70,26 +70,26 @@ function showResponse(h) {
             document.getElementById('bus_stuff').appendChild(row);
 
             var direction = document.createElement("div");
-            direction.setAttribute('class', 'col-xs-1 col-md-1');
+            direction.setAttribute('class', 'col-xs-4 col-md-4');
             var direction_text = document.createTextNode("Direction: " + jsonObj[0].values[i].direction.title );
             direction.appendChild(direction_text);
             row.appendChild(direction);
 
             var minutes = document.createElement("div");
-            minutes.setAttribute('class', 'col-xs-1 col-md-1');
+            minutes.setAttribute('class', 'col-xs-4 col-md-4');
             var minutes_text = document.createTextNode("Minutes: " + jsonObj[0].values[i].minutes);
             minutes.appendChild(minutes_text);
             row.appendChild(minutes);
 
 
             var seconds = document.createElement("div");
-            seconds.setAttribute('class', 'col-xs-1 col-md-1');
+            seconds.setAttribute('class', 'col-xs-4 col-md-4');
             var seconds_text = document.createTextNode("Seconds: " + jsonObj[0].values[i].seconds);
             seconds.appendChild(seconds_text);
             row.appendChild(seconds);
 
             var busid = document.createElement("div");
-            busid.setAttribute('class', 'col-xs-1 col-md-1');
+            busid.setAttribute('class', 'col-xs-4 col-md-4');
             var busid_text = document.createTextNode("BusID: " + jsonObj[0].values[i].vehicle.id );
             busid.appendChild(busid_text);
             row.appendChild(busid);
