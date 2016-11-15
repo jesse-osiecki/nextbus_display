@@ -102,7 +102,8 @@ function showResponse(h) {
 
 
 bust = setInterval(function () {
-    var busurl = window.location.protocol + "//" + window.location.host + "/nb/api/agencies/chapel-hill/routes/J/stops/jonebarn/predictions"
+    //var busurl = window.location.protocol + "//" + window.location.host + "/nb/api/agencies/chapel-hill/routes/J/stops/jonebarn/predictions"
+    var busurl = "http://restbus.info/api/agencies/chapel-hill/routes/J/stops/jonebarn/predictions"
     get_(busurl, showResponse);
 }, 10000);
 startTime();
