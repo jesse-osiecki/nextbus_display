@@ -70,26 +70,19 @@ function showResponse(h) {
             document.getElementById('bus_stuff').appendChild(row);
 
             var direction = document.createElement("div");
-            direction.setAttribute('class', 'col-xs-4 col-md-4');
+            direction.setAttribute('class', 'col-xs-2 col-md-2');
             var direction_text = document.createTextNode("Direction: " + jsonObj[0].values[i].direction.title );
             direction.appendChild(direction_text);
             row.appendChild(direction);
 
             var minutes = document.createElement("div");
-            minutes.setAttribute('class', 'col-xs-4 col-md-4');
-            var minutes_text = document.createTextNode("Minutes: " + jsonObj[0].values[i].minutes);
+            minutes.setAttribute('class', 'col-xs-2 col-md-2');
+            var minutes_text = document.createTextNode("ETA: " + jsonObj[0].values[i].minutes + ":" + (jsonObj[0].values[i].seconds - jsonObj[0].values[i].minutes * 60));
             minutes.appendChild(minutes_text);
             row.appendChild(minutes);
 
-
-            var seconds = document.createElement("div");
-            seconds.setAttribute('class', 'col-xs-4 col-md-4');
-            var seconds_text = document.createTextNode("Seconds: " + jsonObj[0].values[i].seconds);
-            seconds.appendChild(seconds_text);
-            row.appendChild(seconds);
-
             var busid = document.createElement("div");
-            busid.setAttribute('class', 'col-xs-4 col-md-4');
+            busid.setAttribute('class', 'col-xs-2 col-md-2');
             var busid_text = document.createTextNode("BusID: " + jsonObj[0].values[i].vehicle.id );
             busid.appendChild(busid_text);
             row.appendChild(busid);
@@ -105,5 +98,5 @@ bust = setInterval(function () {
     //var busurl = window.location.protocol + "//" + window.location.host + "/nb/api/agencies/chapel-hill/routes/J/stops/jonebarn/predictions"
     var busurl = "http://restbus.info/api/agencies/chapel-hill/routes/J/stops/jonebarn/predictions"
     get_(busurl, showResponse);
-}, 10000);
+}, 1000);
 startTime();
